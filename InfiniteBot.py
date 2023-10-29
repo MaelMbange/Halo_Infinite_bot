@@ -102,10 +102,10 @@ async def stop_session(message,gamertag_:str=None):
 
 
 @bot.command(name="put")
-async def register_gamertag(message, gamertag:str=None, clear:bool=True):
+async def register_gamertag(message, gamertag:str=None):
     print("*** put was called ***")
-    if clear:
-        await clear_private(message)
+
+    await clear_private(message)
     if message.author.name not in users.keys() and gamertag == None:
         print("You must at least specify a gamertag!")
         await send_private(message, "You're not in the database, you must specify a gamertag! (ex: .put gamertag)")
@@ -137,10 +137,12 @@ async def say_my_name(message):
 
 
 @bot.command(name="global")
-async def global_stat(message,gamertag:str=None):
+async def global_stat(message,gamertag:str=None, clear:bool=True):
     print("*** global was called***")
-    await clear_private(message)
 
+    if clear:
+        await clear_private(message)
+        
     user = get_gamertag(message,gamertag)
     print(f"{user}s' global stats informations")
 
