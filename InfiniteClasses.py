@@ -71,7 +71,7 @@ class Game:
         self.changed = self.id != game["id"]
         if  self.changed:
             self.id                      = game["id"]
-            self.map_name                = game["details"]["name"]
+            self.map_name                = game["details"]["map"]["name"]
             self.game_playlist           = game["details"]["playlist_name"]
             self.game_type               = game["details"]["ugcgamevariant"]["name"]
             self.joined_in_progress      = game["player"]["participation"]["joined_in_progress"]

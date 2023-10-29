@@ -6,6 +6,17 @@ from InfiniteClasses import *
 from InfiniteFile import *
 import os
 
+"""
+Résume des commandes:
+@start: start the game session
+@stop: stop the game session
+@global: get global stats
+@put: register your gamertag
+@clear: clear the bot's messages
+"""
+
+
+
 token = os.getenv("INFINITE_BOT_TOKEN")
 if token is not None:
     print("Token found !")
@@ -64,9 +75,8 @@ async def start_session(message, gamertag_:str=None):
         return
     
     gamertag = get_gamertag(message,gamertag_)
-    print(users.items()["gamertag"])
     if gamertag not in users.keys():
-        await send_private(message, f"{gamertag}s' sessiom started !")
+        await send_private(message, f"{gamertag}'s session started !")
         session[gamertag] = {"lastgame":Game(gamertag)}
         game = session[gamertag]["lastgame"]
         while gamertag in session.keys():
@@ -80,15 +90,15 @@ async def start_session(message, gamertag_:str=None):
     
 
 @bot.command(name="stop")
-async def stop_session(message):
+async def stop_session(message,gamertag_:str=None):
     print("*** stop was called ***")
     await clear_private(message)
-    pseudo = get_gamertag(message, pseudo)
-    if pseudo in session.keys():
-        del session[pseudo]
-        await send_private(message, f"{pseudo}'s session stopped")
+    gamertag = get_gamertag(message, gamertag_)
+    if gamertag in session.keys():
+        del session[gamertag]
+        await send_private(message, f"{gamertag}'s session stopped")
     else:
-        await send_private(message, f"{pseudo} has no session")
+        await send_private(message, f"{gamertag} has no session")
 
 
 @bot.command(name="put")
@@ -132,7 +142,7 @@ async def global_stat(message,gamertag:str=None):
     await clear_private(message)
 
     user = get_gamertag(message,gamertag)
-    print("User: " + user)
+    print(f"{user}s' global stats informations")
 
     if user not in users.keys() and user == message.author.name:
         await send_private(message, "No gamertag was specified!")
