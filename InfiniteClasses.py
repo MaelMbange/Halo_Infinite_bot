@@ -97,8 +97,8 @@ class Game:
         
     def __str__(self):
         return f"""
-        ```
-        ============ game-info ============
+        ```m
+        ============ game-infos ============
         id: {self.id}
         name: {self.map_name}
         playlist: {self.game_playlist}
@@ -106,9 +106,11 @@ class Game:
 
         current player: {self.gamertag}
         
-        ============ statistic ============
-        kills   : {self.kills.session_value:,.0f} (+{self.kills.current_value}) ---> expected: {self.expected_kills:.2f}
-        deaths  : {self.deaths.session_value:,.0f} (+{self.deaths.current_value}) ---> expected: {self.expected_deaths:.2f}
+        ============ statistics ============
+        kills   : {self.kills.session_value:,.0f} (+{self.kills.current_value})
+        --->expected: {self.expected_kills:.2f}
+        deaths  : {self.deaths.session_value:,.0f} (+{self.deaths.current_value})
+        --->expected: {self.expected_deaths:.2f}
         assists : {self.assists.session_value:,.0f} (+{self.assists.current_value})
         
         max killing spree: {self.max_killing_spree:,.0f} | kdr: {self.kdr:,.2f}
