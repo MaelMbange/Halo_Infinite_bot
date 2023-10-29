@@ -5,7 +5,7 @@ from InfiniteApi import *
 from classes import *
 from InfiniteFile import *
 
-token = 'MTE2NzU3MjExMjA2ODg0OTcwNA.GLX1_x.xk9943FtBLZuQKba7tQyIfo05LOA_ngZ3EIDBs'
+token = ''
 
 intents = discord.Intents.default()
 intents.message_content = True
