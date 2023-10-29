@@ -102,10 +102,10 @@ async def stop_session(message,gamertag_:str=None):
 
 
 @bot.command(name="put")
-async def register_gamertag(message, gamertag:str=None):
+async def register_gamertag(message, gamertag:str=None, clear:bool=True):
     print("*** put was called ***")
-
-    await clear_private(message)
+    if clear:
+        await clear_private(message)
     if message.author.name not in users.keys() and gamertag == None:
         print("You must at least specify a gamertag!")
         await send_private(message, "You're not in the database, you must specify a gamertag! (ex: .put gamertag)")

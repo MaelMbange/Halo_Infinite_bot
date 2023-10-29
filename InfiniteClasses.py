@@ -106,14 +106,14 @@ class Game:
 
         current player: {self.gamertag}
         
-        ============ statistics ============
+        ============ statistics ============        
         kills   : {self.kills.session_value:,.0f} (+{self.kills.current_value})
-        --->expected: {self.expected_kills:.2f}
         deaths  : {self.deaths.session_value:,.0f} (+{self.deaths.current_value})
-        --->expected: {self.expected_deaths:.2f}
-        assists : {self.assists.session_value:,.0f} (+{self.assists.current_value})
-        
-        max killing spree: {self.max_killing_spree:,.0f} | kdr: {self.kdr:,.2f}
+        assists : {self.assists.current_value:,.0f} (+{self.assists.current_value})
+        --->expected kills : {self.expected_kills:.2f}
+        --->expected deaths: {self.expected_deaths:.2f}
+
+        max killing spree: {self.max_killing_spree:,.0f} | kdr: {self.kdr:,.02f}
         
         suicides: {self.suicides.session_value:,.0f} (+{self.suicides.current_value})
         betrayals: {self.betrayals.session_value:,.0f} (+{self.betrayals.current_value})
@@ -130,7 +130,7 @@ class Game:
         headshots: {self.headshots.session_value:,.0f} (+{self.headshots.current_value})
         
         =========== progression ===========
-        total experiences: {self.xp.session_value:,.0f} xp (+{self.xp.current_value} xp)
+        total experiences: {self.xp.session_value:,.0f} xp (+{self.xp.current_value:,.0f} xp)
         
         ============== bonus ==============
         game had already started: {self.joined_in_progress}
@@ -179,7 +179,7 @@ class Global:
 
     def __str__(self):
         return f"""
-        ```
+        ```m
         ============= Player-info =============
         gamertag: {self.gamertag}
         
