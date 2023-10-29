@@ -4,8 +4,13 @@ import asyncio
 from InfiniteApi import *
 from classes import *
 from InfiniteFile import *
+import os
 
-token = ''
+token = os.getenv("INFINITE_BOT_TOKEN")
+if token is not None:
+    print("Token found !")
+else:
+    print("Token not found !")
 
 intents = discord.Intents.default()
 intents.message_content = True
