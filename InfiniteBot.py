@@ -77,7 +77,7 @@ async def start_session(message, gamertag_:str=None):
     gamertag = get_gamertag(message,gamertag_)
     if gamertag not in users.keys():
         await send_private(message, f"{gamertag}'s session started !")
-        session[gamertag] = {"lastgame":Game(gamertag)}
+        session[gamertag] = {"lastgame":Game(gamertag,False)}
         game = session[gamertag]["lastgame"]
         while gamertag in session.keys():
             game.update()

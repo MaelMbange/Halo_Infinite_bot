@@ -55,7 +55,6 @@ class Game:
 
         #progression
         self.xp = Evolution_stat()
-        self.csr = Evolution_stat()
         
         #game outcome
         self.outcome = "raw"
@@ -90,11 +89,10 @@ class Game:
             self.shots_accuracy          = game["player"]["stats"]["core"]["shots"]["accuracy"]
             self.headshots.update(game["player"]["stats"]["core"]["breakdown"]["kills"]["headshots"])
             self.xp.update(game["player"]["stats"]["core"]["scores"]["personal"])
-            self.csr.update(game["player"]["progression"]["csr"])
             self.outcome                 = game["player"]["outcome"]
             self.human                   = game["playable_duration"]["human"]
-            self.expected_kills          = game["player"]["progression"]["kills"]["expected"]
-            self.expected_deaths         = game["player"]["progression"]["deaths"]["expected"]
+            self.expected_kills          = game["player"]["performances"]["kills"]["expected"]
+            self.expected_deaths         = game["player"]["performances"]["deaths"]["expected"]
 
         
     def __str__(self):
@@ -134,7 +132,6 @@ class Game:
         ```
         =========== progression ===========
         xp: {self.xp.session_value:,} (+{self.xp.current_value})
-        if csr: {self.csr.session_value:,} (+{self.csr.current_value})
         ```
 
         ```
