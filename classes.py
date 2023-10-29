@@ -14,6 +14,7 @@ class Game:
      
     def __init__(self, gamertag:str,init_session:bool=True):
         self.init = init_session
+        self.changed = False
 
         self.id = "Empty"
         #game settings
@@ -67,8 +68,8 @@ class Game:
         if self.init:
             self.id                     = game["id"]
             self.init                   = False
-        compare = self.id != game["id"]
-        if compare:
+        self.changed = self.id != game["id"]
+        if  self.changed:
             self.id                      = game["id"]
             self.map_name                = game["details"]["name"]
             self.game_playlist           = game["details"]["playlist_name"]

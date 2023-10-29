@@ -6,7 +6,7 @@ from pathlib import Path
 
 def save_data(data: {}):
     filename = str(create_main_directory()) + "/user.json"
-    print("filename : " +  filename)
+    #print("filename : " +  filename)
     with open(filename, 'w') as f:
         json.dump(data, f, indent=2)
 
@@ -19,8 +19,8 @@ def load_data() -> {}:
             return data
     else:        
         with open(filename, 'w') as f:
-            json.dump({}, f, indent=2)
-            return {}
+            json.dump({".":{"gamertag":"."}}, f, indent=2)
+            return {".":{"gamertag":"."}}
     
 
 def create_main_directory():
