@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 from InfiniteApi import *
-from classes import *
+from InfiniteClasses import *
 from InfiniteFile import *
 import os
 
