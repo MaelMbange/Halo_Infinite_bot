@@ -183,7 +183,7 @@ class Global:
         ============= Player-info =============
         gamertag: {self.gamertag}
         
-        ---------- kills statistics -----------
+        ========== kills statistics ===========
         kills   : {self.kills:,} | kdr : {self.kdr:,.2f}
         deaths  : {self.deaths:,}
         assists : {self.assists:,}
@@ -193,17 +193,17 @@ class Global:
 
         max killing spree: {self.max_killing_spree:,}
 
-        ---------- damage statistics ----------
+        ========== damage statistics ==========
         damage taken: {self.damage_taken:,}
         damage dealt: {self.damage_dealt:,}
         --->accuracy: {self.accuracy:.2f} %
 
-        ---------- rounds statistics ----------
+        ========== rounds statistics ==========
         rounds won : {self.rounds_won:,}
         rounds lost: {self.rounds_lost:,}
         rounds tie : {self.rounds_tie:,}
 
-        ---------- kills breakdown ------------
+        ========== kills breakdown ============
         melee kills        : {self.breakdown_kills_melee:,}
         grenade kills      : {self.breakdown_kills_grenades:,}
         headshots          : {self.breakdown_kills_headshots:,}
