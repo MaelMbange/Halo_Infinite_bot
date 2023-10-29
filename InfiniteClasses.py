@@ -105,36 +105,31 @@ class Game:
         --->mode: {self.game_type}
 
         current player: {self.gamertag}
-        ```
-        ```
+        
         ============ statistic ============
-        kills   : {self.kills.session_value:,} (+{self.kills.current_value}) ---> expected: {self.expected_kills:.2f}
-        deaths  : {self.deaths.session_value:,} (+{self.deaths.current_value}) ---> expected: {self.expected_deaths:.2f}
-        assists : {self.assists.session_value:,} (+{self.assists.current_value})
+        kills   : {self.kills.session_value:,.0f} (+{self.kills.current_value}) ---> expected: {self.expected_kills:.2f}
+        deaths  : {self.deaths.session_value:,.0f} (+{self.deaths.current_value}) ---> expected: {self.expected_deaths:.2f}
+        assists : {self.assists.session_value:,.0f} (+{self.assists.current_value})
         
-        max killing spree: {self.max_killing_spree:,} | kdr: {self.kdr:,.2f}
+        max killing spree: {self.max_killing_spree:,.0f} | kdr: {self.kdr:,.2f}
         
-        suicides: {self.suicides.session_value:,} (+{self.suicides.current_value})
-        betrayals: {self.betrayals.session_value:,} (+{self.betrayals.current_value})
+        suicides: {self.suicides.session_value:,.0f} (+{self.suicides.current_value})
+        betrayals: {self.betrayals.session_value:,.0f} (+{self.betrayals.current_value})
         
-        damage taken: {self.damage_taken:,}
-        damage dealt: {self.damage_dealt:,}
-        ```
-        ```
+        damage taken: {self.damage_taken:,.0f}
+        damage dealt: {self.damage_dealt:,.0f}
+        
         ============= weapons =============
-        shots fired: {self.shots_fired:,}
-        shots hit: {self.shots_hit:,}
-        shots missed: {self.shots_missed:,}
+        shots fired: {self.shots_fired:,.0f}
+        shots hit: {self.shots_hit:,.0f}
+        shots missed: {self.shots_missed:,.0f}
         shots accuracy: {self.shots_accuracy:,.2f}%
 
-        headshots: {self.headshots.session_value:,} (+{self.headshots.current_value})
-        ```
-        ```
+        headshots: {self.headshots.session_value:,.0f} (+{self.headshots.current_value})
+        
         =========== progression ===========
-        xp: {self.xp.session_value:,} (+{self.xp.current_value})
-        ```
-
-        ```
+        total experiences: {self.xp.session_value:,.0f} xp (+{self.xp.current_value} xp)
+        
         ============== bonus ==============
         game had already started: {self.joined_in_progress}
         duration: {self.human}
