@@ -5,6 +5,7 @@ from InfiniteApi import *
 from InfiniteClasses import *
 from InfiniteFile import *
 import os
+import sys
 
 """
 Résume des commandes:
@@ -77,12 +78,15 @@ async def start_session(message, gamertag_:str=None):
     gamertag = get_gamertag(message,gamertag_)
     if gamertag not in users.keys():
         await send_private(message, f"{gamertag}'s session started !")
-        session[gamertag] = {"lastgame":Game(gamertag,False)}
-        game = session[gamertag]["lastgame"]
+        state = True
+        if sys.argv[1] == "False":
+            state = False
+        session[gamertag] = {"lastgame":Game(gamertag,state)}
+        last_game = session[gamertag]["lastgame"]
         while gamertag in session.keys():
-            game.update()
-            if game.changed:         
-                await send_private(message, str(game))
+            last_game.update()
+            if last_game.changed:         
+                await send_private(message, str(last_game))
             print("Sleeps for 30 seconds...")
             await asyncio.sleep(30)
     else: 
