@@ -21,7 +21,7 @@ def get_last_game_medals_list(pseudo):
     return result
 
 
-def medal_url(medal_id, size=80):
+def medal_url(medal_id, size=96):
         return f"https://etxvqmdrjezgtwgueiar.supabase.co/storage/v1/render/image/public/assets/games/halo-infinite/metadata/multiplayer/medals/{medal_id}.png?width={size}&height={size}"
 
 

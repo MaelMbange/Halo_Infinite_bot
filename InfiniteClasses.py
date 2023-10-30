@@ -14,7 +14,7 @@ class Evolution_stat:
 
 
 class Medal:
-    def __init__(self,gamertag:str, size:int=80):
+    def __init__(self,gamertag:str, size:int=96):
         self.list_medals = InfiniteApi.get_last_game_medals_list(gamertag)
         #print(str(self.list_medals))
         if self.list_medals != None:
@@ -26,11 +26,10 @@ class Medal:
                 for i in range(count):
                     self.list_img.append(InfiniteFile.get_medal_from_local(id))
 
-    def retrieve_image(self,count=0,size=80):
+    def retrieve_image(self,count=0,size=96):
         if count == 0: return None
         width = 8
-        result = result = Image.new("RGB", (width*size, count//width*size+int(count%width!=0)*size))
-        result.paste(self.list_img,box=(0,0))
+        result = result = Image.new("RGBA", (width*size, count//width*size+int(count%width!=0)*size))
         temp = 0
         for img in self.list_img:
             result.paste(img,box=(temp%width*size, temp//width*size))
@@ -245,6 +244,6 @@ def dir_path():
 
 
 if __name__ == "__main__":
-    """g = Global("IceCurim")
-    a = Medal("SirArthurias")
-    print(str(InfiniteApi.get_last_game_medals_list("SirArthurias")))"""
+    #g = Global("IceCurim")
+    #a = Medal("SirArthurias")
+    print(str(InfiniteApi.get_last_game_medals_list("SirArthurias")))

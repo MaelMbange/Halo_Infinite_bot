@@ -92,9 +92,11 @@ async def start_session(message, gamertag_:str=None):
                 await send_private(message, str(last_game))
                 if last_game.medal_count > 0:
                     print("Medals found !")
-                    await send_private(message, "Medals found !")
-                    img = Medal(last_game).retrieve_image(last_game.medal_count)
-                    async with message.typing(): await send_image(message, discord.File(img, filename=f"{gamertag}_medals.png"))
+                    await send_private(message, "---------------")
+                    await send_private(message, "Medals found!")
+                    img = Medal(gamertag)
+                    content = img.retrieve_image(count=last_game.medal_count)
+                    async with message.typing(): await send_image(message, discord.File(content, filename=f"{gamertag}_medals.png"))
             print("Sleeps for 30 seconds...")
             await asyncio.sleep(30)
     else: 
