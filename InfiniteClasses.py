@@ -96,48 +96,39 @@ class Game:
 
         
     def __str__(self):
-        return f"""
-        ```m
-        ============ game-infos ============
-        id: {self.id}
-        name: {self.map_name}
-        playlist: {self.game_playlist}
-        --->mode: {self.game_type}
+        return f"""\n
+id: {self.id}
+name: {self.map_name}
+playlist: {self.game_playlist}
+--->mode: {self.game_type}
 
-        current player: {self.gamertag}
-        
-        ============ statistics ============        
-        kills   : {self.kills.session_value:,.0f} (+{self.kills.current_value})  | kdr: {self.kdr:,.02f}
-        deaths  : {self.deaths.session_value:,.0f} (+{self.deaths.current_value})
-        assists : {self.assists.current_value:,.0f} (+{self.assists.current_value})
-        --->expected kills : {self.expected_kills:.2f}
-        --->expected deaths: {self.expected_deaths:.2f}
+current player: {self.gamertag}       
+kills   : {self.kills.session_value:,.0f} (+{self.kills.current_value})  | kdr: {self.kdr:,.02f}
+deaths  : {self.deaths.session_value:,.0f} (+{self.deaths.current_value})
+assists : {self.assists.current_value:,.0f} (+{self.assists.current_value})
+--->expected kills : {self.expected_kills:.2f}
+--->expected deaths: {self.expected_deaths:.2f}
 
-        max killing spree: {self.max_killing_spree:,.0f}
-        
-        suicides: {self.suicides.session_value:,.0f} (+{self.suicides.current_value})
-        betrayals: {self.betrayals.session_value:,.0f} (+{self.betrayals.current_value})
-        
-        damage taken: {self.damage_taken:,.0f}
-        damage dealt: {self.damage_dealt:,.0f}
-        
-        ============= weapons =============
-        shots fired: {self.shots_fired:,.0f}
-        shots hit: {self.shots_hit:,.0f}
-        shots missed: {self.shots_missed:,.0f}
-        shots accuracy: {self.shots_accuracy:,.2f}%
+max killing spree: {self.max_killing_spree:,.0f}
 
-        headshots: {self.headshots.session_value:,.0f} (+{self.headshots.current_value})
-        
-        =========== progression ===========
-        total experiences: {self.xp.session_value:,.0f} xp (+{self.xp.current_value:,.0f} xp)
-        
-        ============== bonus ==============
-        game had already started: {self.joined_in_progress}
-        duration: {self.human}
-        outcome: {self.outcome}
-        ```
-        """
+suicides: {self.suicides.session_value:,.0f} (+{self.suicides.current_value})
+betrayals: {self.betrayals.session_value:,.0f} (+{self.betrayals.current_value})
+
+damage taken: {self.damage_taken:,.0f}
+damage dealt: {self.damage_dealt:,.0f}
+
+shots fired: {self.shots_fired:,.0f}
+shots hit: {self.shots_hit:,.0f}
+shots missed: {self.shots_missed:,.0f}
+shots accuracy: {self.shots_accuracy:,.2f}%
+headshots: {self.headshots.session_value:,.0f} (+{self.headshots.current_value})
+
+total experiences: {self.xp.session_value:,.0f} xp (+{self.xp.current_value:,.0f} xp)
+
+game had already started: {self.joined_in_progress}
+duration: {self.human}
+outcome: {self.outcome}
+"""
     
 
     
@@ -178,46 +169,39 @@ class Global:
         self.time_played_human = game["data"]["time_played"]["human"]
 
     def __str__(self):
-        return f"""
-        ```m
-        ============= Player-info =============
-        gamertag: {self.gamertag}
-        
-        ========== kills statistics ===========
-        kills   : {self.kills:,} | kdr : {self.kdr:,.2f}
-        deaths  : {self.deaths:,}
-        assists : {self.assists:,}
+        return f"""\n
+gamertag: {self.gamertag}
 
-        betrayals: {self.betrayals:,}
-        suicides : {self.suicides:,}
+kills   : {self.kills:,} | kdr : {self.kdr:,.2f}
+deaths  : {self.deaths:,}
+assists : {self.assists:,}
 
-        max killing spree: {self.max_killing_spree:,}
+betrayals: {self.betrayals:,}
+suicides : {self.suicides:,}
 
-        ========== damage statistics ==========
-        damage taken: {self.damage_taken:,}
-        damage dealt: {self.damage_dealt:,}
-        --->accuracy: {self.accuracy:.2f} %
+max killing spree: {self.max_killing_spree:,}
 
-        ========== rounds statistics ==========
-        rounds won : {self.rounds_won:,}
-        rounds lost: {self.rounds_lost:,}
-        rounds tie : {self.rounds_tie:,}
+damage taken: {self.damage_taken:,}
+damage dealt: {self.damage_dealt:,}
+--->accuracy: {self.accuracy:.2f} %
 
-        ========== kills breakdown ============
-        melee kills        : {self.breakdown_kills_melee:,}
-        grenade kills      : {self.breakdown_kills_grenades:,}
-        headshots          : {self.breakdown_kills_headshots:,}
-        power weapons      : {self.breakdown_kills_power_weapons:,}
-        sticks             : {self.breakdown_kills_sticks:,}
-        assassinations     : {self.breakdown_kills_assassinations:,}
-        vehicule splatters : {self.breakdown_kills_vehicules_splatters:,}
-        repulsor           : {self.breakdown_kills_miscellaneous_repulsor:,}
-        fusion coil        : {self.breakdown_kills_miscellaneous_fusion_coil:,}
-        
-        total experiences: {self.scores_xp:,} xp
-        time played: {self.time_played_human}
-        ```
-        """
+rounds won : {self.rounds_won:,}
+rounds lost: {self.rounds_lost:,}
+rounds tie : {self.rounds_tie:,}
+
+melee kills        : {self.breakdown_kills_melee:,}
+grenade kills      : {self.breakdown_kills_grenades:,}
+headshots          : {self.breakdown_kills_headshots:,}
+power weapons      : {self.breakdown_kills_power_weapons:,}
+sticks             : {self.breakdown_kills_sticks:,}
+assassinations     : {self.breakdown_kills_assassinations:,}
+vehicule splatters : {self.breakdown_kills_vehicules_splatters:,}
+repulsor           : {self.breakdown_kills_miscellaneous_repulsor:,}
+fusion coil        : {self.breakdown_kills_miscellaneous_fusion_coil:,}
+
+total experiences: {self.scores_xp:,} xp
+time played: {self.time_played_human}
+"""
     
 
 

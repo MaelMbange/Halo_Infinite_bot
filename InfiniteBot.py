@@ -78,14 +78,12 @@ async def start_session(message, gamertag_:str=None):
     gamertag = get_gamertag(message,gamertag_)
     if gamertag not in users.keys():
         await send_private(message, f"{gamertag}'s session started !")
-        state = True
-        if sys.argv[1] == "False":
-            state = False
-        session[gamertag] = {"lastgame":Game(gamertag,state)}
+        session[gamertag] = {"lastgame":Game(gamertag)}
         last_game = session[gamertag]["lastgame"]
         while gamertag in session.keys():
             last_game.update()
-            if last_game.changed:         
+            if last_game.changed:                
+                await clear_private(message)
                 await send_private(message, str(last_game))
             print("Sleeps for 30 seconds...")
             await asyncio.sleep(30)
