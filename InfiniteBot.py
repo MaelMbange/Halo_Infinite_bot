@@ -5,7 +5,6 @@ from InfiniteApi import *
 from InfiniteClasses import *
 from InfiniteFile import *
 import os
-import sys
 
 """
 Résume des commandes:
@@ -43,6 +42,11 @@ async def send_private(message, content:str):
         await dm_channel.send(content)
 
 
+async def send_image(message, image):
+	dm_channel = await message.author.create_dm()
+	await dm_channel.send(file=image)
+
+
 async def clear_private(message):
     dm_channel = await get_dm_channel(message)
 
@@ -78,13 +82,19 @@ async def start_session(message, gamertag_:str=None):
     gamertag = get_gamertag(message,gamertag_)
     if gamertag not in users.keys():
         await send_private(message, f"{gamertag}'s session started !")
-        session[gamertag] = {"lastgame":Game(gamertag)}
+        session[gamertag] = {"lastgame":Game(gamertag,False)}
         last_game = session[gamertag]["lastgame"]
         while gamertag in session.keys():
             last_game.update()
-            if last_game.changed:                
+            if last_game.changed:
+                print("Game changed !")
                 await clear_private(message)
                 await send_private(message, str(last_game))
+                if last_game.medal_count > 0:
+                    print("Medals found !")
+                    await send_private(message, "Medals found !")
+                    img = Medal(last_game).retrieve_image(last_game.medal_count)
+                    async with message.typing(): await send_image(message, discord.File(img, filename=f"{gamertag}_medals.png"))
             print("Sleeps for 30 seconds...")
             await asyncio.sleep(30)
     else: 

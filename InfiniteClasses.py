@@ -1,4 +1,7 @@
+from io import BytesIO
 import InfiniteApi
+import InfiniteFile
+from PIL import Image
 
 class Evolution_stat:
     def __init__(self):        
@@ -8,6 +11,34 @@ class Evolution_stat:
     def update(self, value):
         self.current_value = value
         self.session_value += value
+
+
+class Medal:
+    def __init__(self,gamertag:str, size:int=80):
+        self.list_medals = InfiniteApi.get_last_game_medals_list(gamertag)
+        #print(str(self.list_medals))
+        if self.list_medals != None:
+            self.list_img = []
+            for medal in self.list_medals:
+                id = medal["id"]
+                count = medal["count"]
+                InfiniteFile.save_medal_in_local(id,size)
+                for i in range(count):
+                    self.list_img.append(InfiniteFile.get_medal_from_local(id))
+
+    def retrieve_image(self,count=0,size=80):
+        if count == 0: return None
+        width = 8
+        result = result = Image.new("RGB", (width*size, count//width*size+int(count%width!=0)*size))
+        result.paste(self.list_img,box=(0,0))
+        temp = 0
+        for img in self.list_img:
+            result.paste(img,box=(temp%width*size, temp//width*size))
+            temp += 1
+        bin = BytesIO()
+        result.save(bin,format="PNG")
+        bin.seek(0)
+        return bin
 
 
 class Game:
@@ -44,6 +75,8 @@ class Game:
         self.damage_taken = 0
         self.damage_dealt = 0
 
+        self.medal_count = 0
+
         #weapon stats
         self.shots_fired = 0
         self.shots_hit = 0
@@ -79,6 +112,7 @@ class Game:
             self.assists.update(game["player"]["stats"]["core"]["summary"]["assists"])
             self.suicides.update(game["player"]["stats"]["core"]["summary"]["suicides"])
             self.betrayals.update(game["player"]["stats"]["core"]["summary"]["betrayals"])
+            self.medal_count             = game["player"]["stats"]["core"]["summary"]["medals"]["total"]
             self.max_killing_spree       = game["player"]["stats"]["core"]["summary"]["max_killing_spree"]
             self.kdr                     = game["player"]["stats"]["core"]["kdr"]
             self.damage_taken            = game["player"]["stats"]["core"]["damage"]["taken"]
@@ -96,7 +130,7 @@ class Game:
 
         
     def __str__(self):
-        return f"""\n
+        return f"""
 id: {self.id}
 name: {self.map_name}
 playlist: {self.game_playlist}
@@ -169,7 +203,7 @@ class Global:
         self.time_played_human = game["data"]["time_played"]["human"]
 
     def __str__(self):
-        return f"""\n
+        return f"""
 gamertag: {self.gamertag}
 
 kills   : {self.kills:,} | kdr : {self.kdr:,.2f}
@@ -211,6 +245,6 @@ def dir_path():
 
 
 if __name__ == "__main__":
-    pass
-    g = Global("IceCurim")
-    print(str(g))
+    """g = Global("IceCurim")
+    a = Medal("SirArthurias")
+    print(str(InfiniteApi.get_last_game_medals_list("SirArthurias")))"""
